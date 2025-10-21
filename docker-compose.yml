@@ -1,0 +1,57 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: tontiscore-backend
+    command: npm run start:dev
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+      - ml-service
+    networks:
+      - tontiscore-net
+
+  ml-service:
+    build: ./ml-service
+    container_name: tontiscore-ml
+    command: uvicorn app:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    networks:
+      - tontiscore-net
+
+  db:
+    image: postgres:15
+    container_name: tontiscore-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: tontiscore
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - tontiscore-net
+
+  redis:
+    image: redis:7
+    container_name: tontiscore-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - tontiscore-net
+
+networks:
+  tontiscore-net:
+    driver: bridge
+
+volumes:
+  pgdata:
