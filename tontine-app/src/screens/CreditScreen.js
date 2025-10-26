@@ -1,14 +1,9 @@
 import React from 'react';
-import {
-  StatusBar,
-  View,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
+import { StatusBar, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import themeStyles from '../theme/styles';
+import styles from '../theme/styles'; // on change le nom à l'import 
 import { useNavigation } from '@react-navigation/native';
 
 export default function CreditScreen({ navigation }) {

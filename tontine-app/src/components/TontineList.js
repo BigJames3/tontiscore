@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
+import styles from '../theme/styles';
 
 export default function TontineList() {
   const navigation = useNavigation();
@@ -18,7 +19,7 @@ export default function TontineList() {
 
       <TouchableOpacity
         style={styles.tontineCard}
-        onPress={() => navigation.navigate('TontineDetail')}
+        onPress={() => navigation.navigate('Tontine')}
       >
         <LinearGradient
           colors={['#10B981', '#059669']}

@@ -2,19 +2,17 @@ import React from 'react';
 import { StatusBar, ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import themeStyles from '../theme/styles';
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 
 // 🔹 On importe ton composant ici :
 import WalletCard from '../components/WalletCard';
 import QuickActions from '../components/QuickActions';
 import TontineList from '../components/TontineList';
-
-import styles from '../theme/styles';
+import styles from '../theme/styles'; // on change le nom à l'import
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
-export default function DashboardScreen() {
+export default function DashboardScreen({ navigation }) {
   // const navigation = useNavigation();
 
   return (
@@ -102,10 +100,14 @@ export default function DashboardScreen() {
           <Feather name="home" size={24} color="#10B981" />
           <Text style={[styles.navText, styles.navTextActive]}>Accueil</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navItem}>
+        <TouchableOpacity
+          style={styles.navItem}
+          onPress={() => navigation.navigate('Tontine')}
+        >
           <Feather name="users" size={24} color="#9CA3AF" />
           <Text style={styles.navText}>Tontines</Text>
         </TouchableOpacity>
+
         <TouchableOpacity
           style={styles.navItem}
           onPress={() => navigation.navigate('Wallet')}

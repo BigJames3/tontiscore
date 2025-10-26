@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
+import styles from '../theme/styles';
 
 export default function AlertCard() {
   const navigation = useNavigation();
